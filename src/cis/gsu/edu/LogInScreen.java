@@ -20,6 +20,9 @@ public class LogInScreen extends JFrame {
 		JPanel p3 = new JPanel(new BorderLayout());
 		JButton forgotPassword = new JButton("Forgot password?");
 		
+		JPanel p4 = new JPanel(new BorderLayout());
+		JButton registration = new JButton("Register");
+		
 		//Insert method to start up the flight reservation page.
 		logInButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -34,11 +37,25 @@ public class LogInScreen extends JFrame {
 			}	
 		});
 		
+		registration.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				RegistrationScreen regFrame = new RegistrationScreen();
+				regFrame.setTitle("Registration");
+				regFrame.setSize(500,500);
+				regFrame.setLocationRelativeTo(null);
+				regFrame.setVisible(true);
+				dispose();
+			}	
+		});
+		
 		p2.add(logInButton);
 		add(p2,BorderLayout.SOUTH);	
 		
 		p3.add(forgotPassword);
 		add(p3,BorderLayout.SOUTH);
+		
+		p4.add(registration);
+		add(p4,BorderLayout.SOUTH);
 	}
 	
 	public static void main(String[] args) {
