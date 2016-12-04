@@ -36,7 +36,7 @@ public class LogInScreen extends JFrame {
 				JOptionPane.showMessageDialog(null, "Action Listner working.");
 			}	
 		});
-		
+		//When clicking on registration button, user directed to the registration form.
 		registration.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				RegistrationScreen regFrame = new RegistrationScreen();
