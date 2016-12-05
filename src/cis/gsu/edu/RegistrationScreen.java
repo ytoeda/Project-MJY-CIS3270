@@ -74,12 +74,14 @@ public class RegistrationScreen extends JFrame {
 					String question = questionField.getText();
 					String answer = answerField.getText();
 					
-					String sql = "insert into NonAdminUsers values (First name, Last name,  User name, Password, Email address, SSN, Sequrity question, Answer, '"+firstName+"','"+lastName+"','"+userName+",'"+password+",'"+email+"','"+ssn+"','"+question+"','"+answer+"')";
+					String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
+					System.out.println(sql);
 					stmt.executeUpdate(sql);
 					
 					
 				} catch (Exception exc) {
-					System.out.println("Error");
+					System.out.println(exc.getMessage());
+					
 				}
 			}
 	});
