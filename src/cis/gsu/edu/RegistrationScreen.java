@@ -63,6 +63,7 @@ public class RegistrationScreen extends JFrame {
 		buttonRegister.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
+					
 					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys?useSSL=false","root","Georgia2018");
 					Statement stmt = myConn.createStatement();
 					String firstName = firstNameField.getText();
@@ -70,10 +71,9 @@ public class RegistrationScreen extends JFrame {
 					String userName = userNameField.getText();
 					String password= new String(passwordField.getPassword());
 					String email= emailField.getText();
-					int ssn = Integer.parseInt(ssnField.getText());
+					Integer ssn = Integer.parseInt(ssnField.getText());
 					String question = questionField.getText();
 					String answer = answerField.getText();
-					
 					String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
 					System.out.println(sql);
 					stmt.executeUpdate(sql);
@@ -81,8 +81,10 @@ public class RegistrationScreen extends JFrame {
 					
 				} catch (Exception exc) {
 					System.out.println(exc.getMessage());
+					JOptionPane.showMessageDialog(null, "Ooopos. Invalid entry. Make sure you enter 9 digits for your SSN! Try Again.");
 					
 				}
+				dispose();
 			}
 	});
 
@@ -100,6 +102,8 @@ public class RegistrationScreen extends JFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+	
 	}	
 	
 
