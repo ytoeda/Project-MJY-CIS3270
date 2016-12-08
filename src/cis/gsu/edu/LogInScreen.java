@@ -133,6 +133,22 @@ public class LogInScreen extends JFrame {
 			}	
 		});
 		
+		
+		forgotPassword.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+					PasswordRecovery pwr = new PasswordRecovery();
+					pwr.setTitle("Registration");
+					pwr.setSize(500,500);
+					pwr.setLocationRelativeTo(null);
+					pwr.setVisible(true);
+					dispose();
+					
+				}catch(Exception exc){
+					System.out.println(exc.getMessage());	
+				}
+			}
+				});
 		p2.add(logInButton);
 		add(p2,BorderLayout.SOUTH);	
 		
