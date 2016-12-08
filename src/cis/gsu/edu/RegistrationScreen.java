@@ -56,6 +56,27 @@ public class RegistrationScreen extends JFrame {
 		p1.add(answerLabel);
 		p1.add(answerField);
 		
+		JLabel addressLabel = new JLabel ("Address");
+		JTextField addressField = new JTextField (25);
+		p1.add(addressLabel);
+		p1.add(addressField);
+		
+		JLabel zipLabel = new JLabel ("Zip");
+		JTextField zipField = new JTextField (5);
+		p1.add(zipLabel);
+		p1.add(zipField);
+		
+		JLabel stateLabel = new JLabel ("State");
+		JTextField stateField = new JTextField (2);
+		p1.add(stateLabel);
+		p1.add(stateField);
+		
+		JLabel phoneLabel = new JLabel ("Phone");
+		JTextField phoneField = new JTextField (10);
+		p1.add(phoneLabel);
+		p1.add(phoneField);
+		
+		
 		JPanel p2 = new JPanel(new BorderLayout());
 		JButton buttonRegister = new JButton("Register");
 		
@@ -64,7 +85,7 @@ public class RegistrationScreen extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				try {
 					
-					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys?useSSL=false","root","Georgia2018");
+					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
 					Statement stmt = myConn.createStatement();
 					String firstName = firstNameField.getText();
 					String lastName = lastNameField.getText();
@@ -74,14 +95,22 @@ public class RegistrationScreen extends JFrame {
 					Integer ssn = Integer.parseInt(ssnField.getText());
 					String question = questionField.getText();
 					String answer = answerField.getText();
-					String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
+					String address = addressField.getText();
+					String zip = zipField.getText(); 
+					String state = stateField.getText(); 
+					String phone = phoneField.getText(); 
+					
+					
+					
+					//String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
+					String sql = "INSERT INTO `user` (`FirstName`, `LastName`, `Username`, `Password`, `Email`, `SSN`, `SecurityQuestion`, `SecurityAnswer`, `Address`, `zip`, `state`, `telephone`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"','"+address+"','"+zip+"','"+state+"','"+phone+"');";
 					System.out.println(sql);
 					stmt.executeUpdate(sql);
 					
 					
 				} catch (Exception exc) {
 					System.out.println(exc.getMessage());
-					JOptionPane.showMessageDialog(null, "Ooopos. Invalid entry. Make sure you enter 9 digits for your SSN! Try Again.");
+			//	JOptionPane.showMessageDialog(null, "Ooopos. Invalid entry. Make sure you enter 9 digits for your SSN! Try Again.");
 					
 				}
 				dispose();
