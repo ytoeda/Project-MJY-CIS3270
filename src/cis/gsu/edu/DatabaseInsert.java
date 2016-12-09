@@ -14,7 +14,7 @@ public class DatabaseInsert extends RegistrationScreen{
 			RegistrationScreen r = new RegistrationScreen();
 			Connection con = getConnection();
 			Statement myStat = con.createStatement();
-			String sql =  "insert into actor " + "(FirstName, LastName, Username, Password, Email, SSN, SecurityQuestion , SecurityAnswer, Address, Zip , State, Telephone )" +
+			String sql =  "insert into user " + "(FirstName, LastName, Username, Password, Email, SSN, SecurityQuestion , SecurityAnswer, Address, Zip , State, Telephone )" +
 			"values" ,firstName, lastName,  userName, password, email, ssn, question, answer, address, zip, state, telephone; 
 			//PreparedStatement create = (PreparedStatement) con.prepareStatement("CREATE TABLE IF NOT EXISTS User (Username varchar(12), Password varchar(15), FirstName varchar(25), LastName varchar(25), SSN int (10), Address varchar(35), Zip int (5), State varchar(2), Telephone int (10), Email varchar(25), SecurityQuestion varchar(50), SecurityAnswer varchar(15))");
 			myStat.executeUpdate(sql);
@@ -25,6 +25,7 @@ public class DatabaseInsert extends RegistrationScreen{
 			System.out.println("Function complete");
 		};
 		}
+	
 
 		public static Connection getConnection() throws Exception{
 			try {

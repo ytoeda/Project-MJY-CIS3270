@@ -37,19 +37,31 @@ public class LogInScreen extends JFrame {
 		logInButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
-					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys?useSSL=false","root","Georgia2018");
+					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
 					Statement stmt = myConn.createStatement();
 					String userName = userNameField.getText();
 					String password= new String(passField.getPassword());
 
 					        if (userName != null && password != null) {
-					            String sql = "SELECT * FROM NonAdminUsers WHERE uname='" + userName + "' and pwd='" + password + "'";
+					            String sql = "SELECT * FROM user WHERE Username='" + userName + "' and password='" + password + "'";
 					            ResultSet rs = stmt.executeQuery(sql);
 					            if (rs.next()) {
-					            	 JOptionPane.showMessageDialog(null,"Login Successfully");
+					            	
+			
+					            	FlightScreen window = new FlightScreen();
+									window.frmFlight.setVisible(true);
+									JFrame frmFlight = new JFrame();
+									frmFlight.setTitle("Flight ");
+									frmFlight.setBounds(100, 100, 450, 300);
+									frmFlight.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+									
+									JPanel panel = new JPanel();
+									FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+									flowLayout.setAlignment(FlowLayout.LEFT);
+									frmFlight.getContentPane().add(panel, BorderLayout.NORTH);
 				                  
 					            } else {
-					            	String sql2 = "SELECT q1 from NonAdminUsers WHERE uname ='" + userName +"'";
+					            	String sql2 = "SELECT q1 from user WHERE uname ='" + userName +"'";
 					            	ResultSet rs2 = stmt.executeQuery(sql2);
 					            	
 					            	while(rs2.next()){
@@ -79,7 +91,7 @@ public class LogInScreen extends JFrame {
 					            			public void actionPerformed(ActionEvent e){
 					            				
 					            				try{
-					            					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys?useSSL=false","root","Georgia2018");
+					            					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
 					            					Statement stmt = myConn.createStatement();
 					            					String a1 = answer.getText();
 					            					

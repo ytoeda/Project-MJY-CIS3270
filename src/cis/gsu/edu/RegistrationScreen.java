@@ -103,7 +103,8 @@ public class RegistrationScreen extends JFrame {
 					
 					
 					//String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
-					String sql = "INSERT INTO `user` (`FirstName`, `LastName`, `Username`, `Password`, `Email`, `SSN`, `SecurityQuestion`, `SecurityAnswer`, `Address`, `zip`, `state`, `telephone`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"','"+address+"','"+zip+"','"+state+"','"+phone+"');";
+					String sql = "INSERT INTO `user` (`FirstName`, `LastName`, `Username`, `Password`, `Email`, `SSN`, `SecurityQuestion`, `SecurityAnswer`, `Address`, `zip`, `state`, `telephone`) VALUES "
+							+ "('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"','"+address+"','"+zip+"','"+state+"','"+phone+"');";
 					System.out.println(sql);
 					stmt.executeUpdate(sql);
 					
