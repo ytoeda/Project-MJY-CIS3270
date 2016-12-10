@@ -32,10 +32,11 @@ public class DatabaseInsert extends RegistrationScreen{
 		//	  Connection myConn= DriverManager.getConnection("jdbc:mysql://localhost:3306/sakila" , "student" , "student");
 			String driver = "com.mysql.jdbc.Driver";
 		//	String url = "jdbc:mysql://131.96.220.96/cis3270";
-			String url = "jdbc:mysql://localhost:3306/cis3270";
+			String url = "jdbc:mysql://127.0.0.1:3306/airlineflights";
+			
 			
 			String userName = "root";
-			String password = "Jay11121991";
+			String password = "Gsu22390";
 			Class.forName(driver);
 			Connection myConn = DriverManager.getConnection(url, userName, password);
 			System.out.println("Connected");

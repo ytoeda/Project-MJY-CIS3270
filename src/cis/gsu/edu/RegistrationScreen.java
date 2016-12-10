@@ -85,7 +85,7 @@ public class RegistrationScreen extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				try {
 					
-					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
+					Connection myConn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/airlineflights","root","Gsu22390");
 					Statement stmt = myConn.createStatement();
 					String firstName = firstNameField.getText();
 					String lastName = lastNameField.getText();
@@ -100,11 +100,13 @@ public class RegistrationScreen extends JFrame {
 					String state = stateField.getText(); 
 					String phone = phoneField.getText(); 
 					
+				
 					
 					
 					//String sql = "INSERT INTO `sys`.`NonAdminUsers` (`fname`, `lname`, `uname`, `pwd`, `email`, `ssn`, `q1`, `a1`) VALUES ('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"');";
 					String sql = "INSERT INTO `user` (`FirstName`, `LastName`, `Username`, `Password`, `Email`, `SSN`, `SecurityQuestion`, `SecurityAnswer`, `Address`, `zip`, `state`, `telephone`) VALUES "
 							+ "('"+firstName+"','"+lastName+"','"+userName+"','"+password+"','"+email+"','"+ssn+"','"+question+"','"+answer+"','"+address+"','"+zip+"','"+state+"','"+phone+"');";
+					
 					System.out.println(sql);
 					stmt.executeUpdate(sql);
 					
