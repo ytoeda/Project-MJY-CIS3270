@@ -37,13 +37,14 @@ public class LogInScreen extends JFrame {
 		logInButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
-					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
+					Connection myConn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/airlineflights?useSSL=false","root","Gsu22390");
 					Statement stmt = myConn.createStatement();
 					String userName = userNameField.getText();
 					String password= new String(passField.getPassword());
 
 					        if (userName != null && password != null) {
-					            String sql = "SELECT * FROM user WHERE Username='" + userName + "' and password='" + password + "'";
+					           // String sql = "SELECT * FROM user WHERE Username='" + userName + "' and password='" + password + "'";
+					        	 String sql = "SELECT * FROM user WHERE userName='" + userName + "' and password='" + password + "'";
 					            ResultSet rs = stmt.executeQuery(sql);
 					            if (rs.next()) {
 					            	
@@ -91,7 +92,7 @@ public class LogInScreen extends JFrame {
 					            			public void actionPerformed(ActionEvent e){
 					            				
 					            				try{
-					            					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270","root","Jay11121991");
+					            					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:121.0.0.1/airlineflight?useSSL=false","root","Gsu22390");
 					            					Statement stmt = myConn.createStatement();
 					            					String a1 = answer.getText();
 					            					

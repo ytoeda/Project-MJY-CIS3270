@@ -37,10 +37,10 @@ createTable();
 		public static Connection getConnection() throws Exception{
 			try {
 			String driver = "com.mysql.jdbc.Driver";
-			String url = "jdbc:mysql://localhost:3306/cis3270";
+			String url = "jdbc:mysql://121.0.0.1:3306/airlineflights,?useSSL=false";
 			
 			String userName = "root";
-			String password = "Jay11121991";
+			String password = "Gsu22390";
 			Class.forName(driver);
 			Connection myConn = DriverManager.getConnection(url, userName, password);
 			System.out.println("Connected");

@@ -46,7 +46,8 @@ public class MainScreen extends JFrame{
 				regFrame.setSize(500,500);                               
 				regFrame.setLocationRelativeTo(null);                    
 				regFrame.setVisible(true);                               
-				dispose();                                               
+				dispose();  
+				
 			}	                                                         
 		});  
 		
