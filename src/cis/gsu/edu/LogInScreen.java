@@ -12,14 +12,14 @@ import java.sql.Statement;
 public class LogInScreen extends JFrame {
 	public LogInScreen(){
 		//testing repo syncs
-		setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
+		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
 		
-		add(new JLabel("User Name"));
+		getContentPane().add(new JLabel("User Name"));
 		JTextField userNameField = new JTextField (10);
-		add(userNameField);
-		add(new JLabel("Password"));
+		getContentPane().add(userNameField);
+		getContentPane().add(new JLabel("Password"));
 		JPasswordField passField = new JPasswordField (15);
-		add(passField);
+		getContentPane().add(passField);
 		
 		JPanel p2 = new JPanel(new BorderLayout());
 		JButton logInButton = new JButton("Log in");
@@ -37,6 +37,7 @@ public class LogInScreen extends JFrame {
 		logInButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
+					//Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270?useSSL=false","root","Jay11121991");
 					Connection myConn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/airlineflights?useSSL=false","root","Gsu22390");
 					Statement stmt = myConn.createStatement();
 					String userName = userNameField.getText();
@@ -47,6 +48,8 @@ public class LogInScreen extends JFrame {
 					        	 String sql = "SELECT * FROM user WHERE userName='" + userName + "' and password='" + password + "'";
 					            ResultSet rs = stmt.executeQuery(sql);
 					            if (rs.next()) {
+					            	JOptionPane.showMessageDialog(null,"Login Succesful");
+					            	 dispose();
 					            	
 			
 					            	FlightScreen window = new FlightScreen();
@@ -68,19 +71,19 @@ public class LogInScreen extends JFrame {
 					            	while(rs2.next()){
 					            		String value = rs2.getString("q1");
 					            		JFrame passRecovery = new JFrame(); 
-					            		passRecovery.setLayout(new GridLayout(4,1,10,5));
+					            		passRecovery.getContentPane().setLayout(new GridLayout(4,1,10,5));
 
 					            		JLabel l2= new JLabel("Incorrect Login. Answer your sesurity question to retrieve password.");
-					            		passRecovery.add(l2);
+					            		passRecovery.getContentPane().add(l2);
 
 					            		JLabel l1= new JLabel (value);
-					            		passRecovery.add(l1);
+					            		passRecovery.getContentPane().add(l1);
 
 					            		JTextField answer = new JTextField (25);
-					            		passRecovery.add(answer);
+					            		passRecovery.getContentPane().add(answer);
 
 					            		JButton submitButton = new JButton("Submit");
-					            		passRecovery.add(submitButton);
+					            		passRecovery.getContentPane().add(submitButton);
 					            		
 					            		passRecovery.setTitle("Password Recovery");
 					            		passRecovery.setSize(500,250);
@@ -92,6 +95,7 @@ public class LogInScreen extends JFrame {
 					            			public void actionPerformed(ActionEvent e){
 					            				
 					            				try{
+					            					//Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270?useSSL=false","root","Jay11121991");
 					            					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:121.0.0.1/airlineflight?useSSL=false","root","Gsu22390");
 					            					Statement stmt = myConn.createStatement();
 					            					String a1 = answer.getText();
@@ -163,13 +167,26 @@ public class LogInScreen extends JFrame {
 			}
 				});
 		p2.add(logInButton);
-		add(p2,BorderLayout.SOUTH);	
+		getContentPane().add(p2,BorderLayout.SOUTH);	
 		
 		p3.add(forgotPassword);
-		add(p3,BorderLayout.SOUTH);
+		getContentPane().add(p3,BorderLayout.SOUTH);
 		
 		p4.add(registration);
-		add(p4,BorderLayout.SOUTH);
+		getContentPane().add(p4,BorderLayout.SOUTH);
+		
+		JButton btnNewBmutton = new JButton("Main Menu");
+		btnNewBmutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainScreen frame = new MainScreen();
+				frame.setTitle("Premier Flights");
+				frame.setSize(500,500);
+				frame.setLocationRelativeTo(null);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+			}
+		});
+		getContentPane().add(btnNewBmutton);
 	}
 	
 	public static void main(String[] args) {

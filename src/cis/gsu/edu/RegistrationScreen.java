@@ -12,18 +12,19 @@ public class RegistrationScreen extends JFrame {
 	public RegistrationScreen() {
 
 		JPanel p1 = new JPanel();
-		p1.setBounds(0, 0, 434, 238);
+		p1.setBounds(0, 0, 434, 237);
 
 		JLabel firstNameLabel = new JLabel("First name");
-		firstNameLabel.setBounds(30, 28, 55, 28);
+		firstNameLabel.setBounds(30, 28, 70, 28);
 		JTextField firstNameField = new JTextField(8);
+	
 		firstNameField.setBounds(95, 30, 63, 25);
 		p1.setLayout(null);
 		p1.add(firstNameLabel);
 		p1.add(firstNameField);
 
 		JLabel lastNameLabel = new JLabel("Last name");
-		lastNameLabel.setBounds(30, 67, 50, 25);
+		lastNameLabel.setBounds(30, 67, 70, 25);
 		JTextField lastNameField = new JTextField(8);
 		lastNameField.setBounds(95, 66, 63, 26);
 		p1.add(lastNameLabel);
@@ -65,7 +66,7 @@ public class RegistrationScreen extends JFrame {
 		p1.add(questionField);
 
 		JLabel answerLabel = new JLabel("Security Answer");
-		answerLabel.setBounds(218, 67, 78, 25);
+		answerLabel.setBounds(218, 67, 118, 25);
 		JTextField answerField = new JTextField(15);
 		answerField.setBounds(349, 69, 63, 20);
 		p1.add(answerLabel);
@@ -102,7 +103,7 @@ public class RegistrationScreen extends JFrame {
 		JPanel p2 = new JPanel();
 		p2.setBounds(0, 238, 434, 23);
 		JButton buttonRegister = new JButton("Register");
-		buttonRegister.setBounds(0, 0, 434, 23);
+		buttonRegister.setBounds(0, 0, 219, 23);
 
 		// Insert code to send registration detail to the database.
 		buttonRegister.addActionListener(new ActionListener() {
@@ -153,6 +154,21 @@ public class RegistrationScreen extends JFrame {
 
 		getContentPane().add(p1);
 		getContentPane().add(p2);
+		
+		JButton btnMainMenu = new JButton("Main Menu");
+		btnMainMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainScreen frame = new MainScreen();
+				frame.setTitle("Premier Flights");
+				frame.setSize(500,500);
+				frame.setLocationRelativeTo(null);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+				
+			}
+		});
+		btnMainMenu.setBounds(215, 0, 219, 23);
+		p2.add(btnMainMenu);
 	}
 
 	public static void main(String[] args) {

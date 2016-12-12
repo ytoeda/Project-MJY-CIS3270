@@ -35,7 +35,8 @@ public class MainScreen extends JFrame{
 				regFrame.setSize(500,500);                               
 				regFrame.setLocationRelativeTo(null);                    
 				regFrame.setVisible(true);                               
-				dispose();                                               
+				dispose();                  
+				
 			}	                                                         
 		});
 		
@@ -61,6 +62,7 @@ public class MainScreen extends JFrame{
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
 	}	
 
 }
