@@ -3,6 +3,9 @@ package cis.gsu.edu;
 import javax.swing.*;
 
 public class SecurityQuestions extends JFrame {
+	public SecurityQuestions() {
+		getContentPane().setLayout(null);
+	}
 	
 	private static String [] securityQuestions = {
 			"What is your mother's maiden name?",

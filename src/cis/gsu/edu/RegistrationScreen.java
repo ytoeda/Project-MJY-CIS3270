@@ -110,8 +110,10 @@ public class RegistrationScreen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 
-					Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270", "root",
-							"Jay11121991");
+					//Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270", "root",
+							//"Jay11121991");
+					Connection myConn = DriverManager.getConnection(
+							"jdbc:mysql://127.0.0.1:3306/airlineflights?useSSL=false", "root", "Gsu22390");
 					Statement stmt = myConn.createStatement();
 					String firstName = firstNameField.getText();
 					String lastName = lastNameField.getText();
@@ -134,7 +136,14 @@ public class RegistrationScreen extends JFrame {
 							+ "('" + firstName + "','" + lastName + "','" + userName + "','" + password + "','" + email
 							+ "','" + ssn + "','" + question + "','" + answer + "','" + address + "','" + zip + "','"
 							+ state + "','" + phone + "');";
-					System.out.println(sql);
+					 JOptionPane.showMessageDialog(null,"Register Succesfull");
+	            	 dispose();
+	            	 LogInScreen regFrame = new LogInScreen();  
+	 				regFrame.setTitle("User Log in");                       
+	 				regFrame.setSize(500,500);                               
+	 				regFrame.setLocationRelativeTo(null);                    
+	 				regFrame.setVisible(true);                               
+	 				dispose(); 
 					stmt.executeUpdate(sql);
 
 				} catch (Exception exc) {

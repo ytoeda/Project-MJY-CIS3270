@@ -30,18 +30,22 @@ import net.proteanit.sql.*;
 import java.awt.CardLayout;
 import javax.swing.JScrollBar;
 import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
 
 public class FlightScreen extends LogInScreen {
 
 	JFrame frmFlight;
-	private JTextField txtCityName;
-	private JTextField textField;
 	private JTextField txtMmddyyyy;
 	private JTextField txtMmddyyyy_1;
 	private JTable table;
 	private JTable flightTable;
 	private JTable ftable;
 	private JButton btnMainMenu;
+	private JScrollPane scrollPane;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -73,7 +77,7 @@ public class FlightScreen extends LogInScreen {
 	public void initialize() {
 		frmFlight = new JFrame();
 		frmFlight.setTitle("Flight ");
-		frmFlight.setBounds(100, 100, 450, 300);
+		frmFlight.setBounds(100, 100, 517, 455);
 		frmFlight.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFlight.getContentPane().setLayout(new CardLayout(0, 0));
 
@@ -85,23 +89,11 @@ public class FlightScreen extends LogInScreen {
 		lblEnterCity.setBounds(18, 14, 70, 14);
 		panel.add(lblEnterCity);
 
-		txtCityName = new JTextField();
-		txtCityName.setBounds(81, 11, 78, 20);
-		txtCityName.setText(" ");
-		panel.add(txtCityName);
-		txtCityName.setColumns(9);
-
 		JLabel lblDepartingCity = new JLabel("Flying to");
-		lblDepartingCity.setBounds(189, 14, 41, 14);
+		lblDepartingCity.setBounds(226, 14, 41, 14);
 		panel.add(lblDepartingCity);
 
-		textField = new JTextField();
-		textField.setBounds(253, 11, 78, 20);
-		panel.add(textField);
-		textField.setText(" ");
-		textField.setColumns(9);
-
-		JButton btnSearch = new JButton("Search");
+		JButton btnSearch = new JButton("Load flights");
 		btnSearch.setBounds(81, 111, 261, 23);
 
 		btnSearch.addKeyListener(new KeyAdapter() {
@@ -118,28 +110,31 @@ public class FlightScreen extends LogInScreen {
 		panel.add(btnSearch);
 
 		JLabel lblDeparting = new JLabel("Departure");
-		lblDeparting.setBounds(18, 71, 53, 14);
+		lblDeparting.setBounds(18, 71, 70, 14);
 		panel.add(lblDeparting);
 
 		JLabel lblArriving = new JLabel("Arrival");
-		lblArriving.setBounds(189, 71, 41, 14);
+		lblArriving.setBounds(226, 71, 41, 14);
 		panel.add(lblArriving);
 
 		txtMmddyyyy = new JTextField();
 		txtMmddyyyy.setText("mm/dd/yyyy");
 		txtMmddyyyy.setColumns(9);
-		txtMmddyyyy.setBounds(81, 68, 78, 20);
+		txtMmddyyyy.setBounds(101, 68, 78, 20);
 		panel.add(txtMmddyyyy);
 
 		txtMmddyyyy_1 = new JTextField();
 		txtMmddyyyy_1.setText(" mm/dd/yyyy");
 		txtMmddyyyy_1.setColumns(9);
-		txtMmddyyyy_1.setBounds(253, 68, 78, 20);
+		txtMmddyyyy_1.setBounds(299, 68, 78, 20);
 		panel.add(txtMmddyyyy_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(30, 145, 388, 170);
+		panel.add(scrollPane);
 
 		ftable = new JTable();
-		ftable.setBounds(81, 145, 261, 55);
-		panel.add(ftable);
+		scrollPane.setViewportView(ftable);
 		
 		btnMainMenu = new JButton("Main Menu");
 		btnMainMenu.addActionListener(new ActionListener() {
@@ -153,26 +148,40 @@ public class FlightScreen extends LogInScreen {
 				frmFlight.setVisible(false);
 			}
 		});
-		btnMainMenu.setBounds(81, 227, 261, 23);
+		btnMainMenu.setBounds(30, 326, 114, 23);
 		panel.add(btnMainMenu);
+		
+		JButton btnBookFlight = new JButton("Book Flight");
+		btnBookFlight.setBounds(304, 326, 114, 23);
+		panel.add(btnBookFlight);
+		
+		textField = new JTextField();
+		textField.setBounds(93, 11, 86, 20);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(291, 11, 86, 20);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
 
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 
-					try {
-						// Connection myConn =
-						// DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270?useSSL=false","root","Jay11121991");
-						Connection myConn = DriverManager.getConnection(
-								"jdbc:mysql://127.0.0.1:3306/airlineflights?useSSL=false", "root", "Gsu22390");
-						Statement myStat = myConn.createStatement();
-						String searchQuery = "select * from flightdata ";
-						PreparedStatement create = (PreparedStatement) myConn.prepareStatement(searchQuery);
-						ResultSet rs = create.executeQuery(searchQuery);
-						ftable.setModel(DbUtils.resultSetToTableModel(rs));
-					} catch (Exception e1) {
-						System.out.println(e1);
-					}
+						try{
+							Connection myConn = DriverManager.getConnection(
+									"jdbc:mysql://127.0.0.1:3306/airlineflights?useSSL=false", "root", "Gsu22390"); 
+						        Statement st = myConn.createStatement();
+						        String searchQuery = "select * from flightdata  WHERE DepartingCity LIKE '%" + textField.getText() + "%'";
+						      ResultSet rs = st.executeQuery(searchQuery);
+						      ftable.setModel(DbUtils.resultSetToTableModel(rs)); 
+
+						}
+						     catch (Exception e1) { 
+						        System.err.println(e1.getMessage()); 
+						    }        
+					
 
 					// Connection myConn =
 					// DriverManager.getConnection("jdbc:mysql://localhost:3306/cis3270?useSSL=false","root","Jay11121991");

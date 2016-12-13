@@ -10,10 +10,12 @@ import javax.swing.*;
 public class MainScreen extends JFrame{
 	public MainScreen(){
 
-		setLayout(new BorderLayout()); 
+		getContentPane().setLayout(new BorderLayout()); 
 		
 		JPanel p1 = new JPanel();
-		p1.add(new JLabel("Welcome to Premier Flights! "));  
+		JLabel label = new JLabel("Welcome to Premier Flights! ");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		p1.add(label);  
 		
 		JPanel p2 = new JPanel();
 		p2.add(new JLabel(new ImageIcon("/Users/Yasuko/Desktop/beach.jpg")));
@@ -24,9 +26,9 @@ public class MainScreen extends JFrame{
 		JButton logBtn = new JButton("User Log in");
 		p3.add(logBtn);  
 		
-		add(p1,BorderLayout.NORTH);
-		add(p2,BorderLayout.CENTER);
-		add(p3,BorderLayout.SOUTH);
+		getContentPane().add(p1,BorderLayout.NORTH);
+		getContentPane().add(p2,BorderLayout.CENTER);
+		getContentPane().add(p3,BorderLayout.SOUTH);
 		
 		regBtn.addActionListener(new ActionListener(){             
 			public void actionPerformed(ActionEvent e){                  

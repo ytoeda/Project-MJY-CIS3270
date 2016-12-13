@@ -11,24 +11,60 @@ import java.sql.Statement;
 
 public class LogInScreen extends JFrame {
 	public LogInScreen(){
-		//testing repo syncs
-		getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
+		getContentPane().setLayout(null);
 		
-		getContentPane().add(new JLabel("User Name"));
+		JLabel label = new JLabel("User Name");
+		label.setBounds(11, 24, 52, 14);
+		getContentPane().add(label);
 		JTextField userNameField = new JTextField (10);
+		userNameField.setBounds(73, 21, 86, 20);
 		getContentPane().add(userNameField);
-		getContentPane().add(new JLabel("Password"));
+		JLabel label_1 = new JLabel("Password");
+		label_1.setBounds(169, 24, 46, 14);
+		getContentPane().add(label_1);
 		JPasswordField passField = new JPasswordField (15);
+		passField.setBounds(225, 21, 83, 20);
 		getContentPane().add(passField);
-		
-		JPanel p2 = new JPanel(new BorderLayout());
-		JButton logInButton = new JButton("Log in");
-		
-		JPanel p3 = new JPanel(new BorderLayout());
 		JButton forgotPassword = new JButton("Forgot password?");
+		forgotPassword.setBounds(11, 105, 149, 23);
+		getContentPane().add(forgotPassword);
 		
-		JPanel p4 = new JPanel(new BorderLayout());
+		
+		forgotPassword.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+					PasswordRecovery pwr = new PasswordRecovery();
+					pwr.setTitle("Registration");
+					pwr.setSize(500,500);
+					pwr.setLocationRelativeTo(null);
+					pwr.setVisible(true);
+					dispose();
+					
+				}catch(Exception exc){
+					System.out.println(exc.getMessage());	
+				}
+			}
+				});
+		
+		JButton btnNewBmutton = new JButton("Main Menu");
+		btnNewBmutton.setBounds(292, 105, 132, 23);
+		btnNewBmutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MainScreen frame = new MainScreen();
+				frame.setTitle("Premier Flights");
+				frame.setSize(500,500);
+				frame.setLocationRelativeTo(null);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setVisible(true);
+			}
+		});
+		getContentPane().add(btnNewBmutton);
 		JButton registration = new JButton("Register");
+		registration.setBounds(169, 105, 113, 23);
+		getContentPane().add(registration);
+		JButton logInButton = new JButton("Log in");
+		logInButton.setBounds(320, 20, 104, 23);
+		getContentPane().add(logInButton);
 		
 		//Insert method to start up the flight reservation page.
 		
@@ -137,56 +173,18 @@ public class LogInScreen extends JFrame {
 
 			}
 	});
-
-		//When clicking on registration button, user directed to the registration form.
-		registration.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				RegistrationScreen regFrame = new RegistrationScreen();
-				regFrame.setTitle("Registration");
-				regFrame.setSize(500,500);
-				regFrame.setLocationRelativeTo(null);
-				regFrame.setVisible(true);
-				dispose();
-			}	
-		});
 		
-		
-		forgotPassword.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				try {
-					PasswordRecovery pwr = new PasswordRecovery();
-					pwr.setTitle("Registration");
-					pwr.setSize(500,500);
-					pwr.setLocationRelativeTo(null);
-					pwr.setVisible(true);
-					dispose();
-					
-				}catch(Exception exc){
-					System.out.println(exc.getMessage());	
-				}
-			}
+				//When clicking on registration button, user directed to the registration form.
+				registration.addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e){
+						RegistrationScreen regFrame = new RegistrationScreen();
+						regFrame.setTitle("Registration");
+						regFrame.setSize(500,500);
+						regFrame.setLocationRelativeTo(null);
+						regFrame.setVisible(true);
+						dispose();
+					}	
 				});
-		p2.add(logInButton);
-		getContentPane().add(p2,BorderLayout.SOUTH);	
-		
-		p3.add(forgotPassword);
-		getContentPane().add(p3,BorderLayout.SOUTH);
-		
-		p4.add(registration);
-		getContentPane().add(p4,BorderLayout.SOUTH);
-		
-		JButton btnNewBmutton = new JButton("Main Menu");
-		btnNewBmutton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MainScreen frame = new MainScreen();
-				frame.setTitle("Premier Flights");
-				frame.setSize(500,500);
-				frame.setLocationRelativeTo(null);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
-			}
-		});
-		getContentPane().add(btnNewBmutton);
 	}
 	
 	public static void main(String[] args) {
